@@ -17,9 +17,24 @@ from vae_model import load_vae_model
 from corruption_module import corrupt_image
 from utils import compute_psnr, compute_ssim
 
+import os
+import gdown
+
+def download_weights():
+    url = "https://drive.google.com/uc?id=11vI2DHWnLvgU0xSNWxZdz42b2HwDE2B9"
+    output = "weights/model.pth"  # Adjust path/filename as needed
+    os.makedirs(os.path.dirname(output), exist_ok=True)
+    if not os.path.exists(output):
+        gdown.download(url, output, quiet=False)
+    return output
+
+# Example usage in your model loader:
+weights_path = download_weights()
+# model = load_vae_model(weights_path)
+
 @st.cache_resource
 def get_model():
-    return load_vae_model()
+    return load_vae_model(weights_path)
 
 st.title("Image Restoration with VAE")
 
