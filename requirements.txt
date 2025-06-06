@@ -1,8 +1,7 @@
-streamlit
 tensorflow==2.13.0
-numpy
-Pillow
-torch
-scikit-image
-lpips
-gdown
+streamlit==1.45.1
+numpy==1.25.2
+Pillow==11.2.1
+torch==2.0.1
+scikit-image==0.19.3
+lpips==0.1.4
