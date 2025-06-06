@@ -22,7 +22,7 @@ import gdown
 
 def download_weights():
     url = "https://drive.google.com/uc?id=11vI2DHWnLvgU0xSNWxZdz42b2HwDE2B9"
-    output = "weights/model.pth"  # Adjust path/filename as needed
+    output = "weights/model.h5"  # Adjust path/filename as needed
     os.makedirs(os.path.dirname(output), exist_ok=True)
     if not os.path.exists(output):
         gdown.download(url, output, quiet=False)
