@@ -57,8 +57,3 @@ def load_vae_model(weights_path):
     return model
 
 
-
-pip install streamlit
-
-
-
