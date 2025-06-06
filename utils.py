@@ -8,34 +8,6 @@ Original file is located at
 """
 
 # utils.py
-import numpy as np
-import cv2
-import random
-import tensorflow as tf
-
-def corrupt_image(img):
-    img = np.squeeze(img)
-    corrupted = img.copy()
-
-    if random.random() < 0.7:
-        noise = np.random.normal(0, 0.03, corrupted.shape)
-        corrupted += noise
-    if random.random() < 0.8:
-        corrupted = cv2.GaussianBlur(corrupted, (3, 3), 0)
-    if random.random() < 0.5:
-        h, w = corrupted.shape[:2]
-        top = random.randint(0, h // 2)
-        left = random.randint(0, w // 2)
-        corrupted[top:top+16, left:left+16] = 0
-
-    return np.clip(corrupted, 0, 1)[np.newaxis, ...]
-
-def compute_psnr(original, restored):
-    return tf.image.psnr(original, restored, max_val=1.0).numpy().item()
-
-def compute_ssim(original, restored):
-    return tf.image.ssim(original, restored, max_val=1.0).numpy().item()
-
 from skimage.metrics import peak_signal_noise_ratio as psnr
 from skimage.metrics import structural_similarity as ssim
 import torch
