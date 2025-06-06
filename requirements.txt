@@ -6,3 +6,4 @@ torch==2.0.1
 scikit-image==0.19.3
 lpips==0.1.4
 opencv-python-headless==4.9.0.80
+matplotlib
