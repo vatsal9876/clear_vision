@@ -36,7 +36,7 @@ def blur_image_cv(img, ksize=5):
     blurred = cv2.blur(img, ksize)
     return blurred
 
-def random_corruption(img):
+def corrupt_image(img):
     corrupted = img
     if random.random() < 0.7:
         corrupted = add_gaussian_noise_cv(corrupted)
