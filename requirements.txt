@@ -6,7 +6,8 @@ numpy==1.24.3        # Compatible with TensorFlow 2.13.0
 Pillow==11.2.1       # Latest available, Pillow==11.2.0 does NOT exist
 
 # Add other dependencies as needed, for example:
-opencv-python        # If your project uses OpenCV
+opencv-python-headless
+
 matplotlib           # For plotting, if used
 scikit-learn         # If you use classical ML tools
 # keras              # Not needed separately, included with tensorflow>=2.4.0
