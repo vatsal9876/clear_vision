@@ -1,0 +1,6 @@
+streamlit
+numpy
+Pillow
+torch
+scikit-image
+lpips
