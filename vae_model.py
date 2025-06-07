@@ -52,6 +52,7 @@ def load_vae_model(weights_path):
     encoder = build_encoder()
     decoder = build_decoder()
     model = VAEModel(encoder, decoder)
+    model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=0.001))
     model.build((None, 64, 64, 3))
     model.load_weights(weights_path)
     return model
