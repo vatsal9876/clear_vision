@@ -106,7 +106,7 @@ if uploaded_file is not None:
     st.image(corrupted, caption="Corrupted Image", use_container_width=True)  # Updated parameter
 
     vae = get_model()
-    restored = vae.restore(corrupted)  # Replace with your actual restoration method
+    restored = vae.predict(corrupted)  # Replace with your actual restoration method
     st.image(restored, caption="Restored Image", use_container_width=True)  # Updated parameter
 
     psnr = compute_psnr(np.array(image), restored)
