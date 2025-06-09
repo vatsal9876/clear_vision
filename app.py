@@ -9,7 +9,7 @@ from corruption_module import corrupt_image
 from utils import compute_psnr, compute_ssim, compute_lpips
 
 # === Constants ===
-MODEL_PATH = "models/total_vae_model.keras"  # update path if different
+MODEL_PATH = "models/net_vae_model.keras"  # update path if different
 
 # === Helper Functions ===
 @st.cache_resource
