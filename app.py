@@ -1,34 +1,20 @@
-# app.py
-
 import streamlit as st
 import numpy as np
 from PIL import Image
 import tensorflow as tf
 import os
-import gdown
 
-from vae_model import load_vae_model
+from vae_model import VAEModel  # ensure it uses @register_keras_serializable
 from corruption_module import corrupt_image
-from utils import compute_psnr, compute_ssim, compute_lpips  # Make sure these exist
-
+from utils import compute_psnr, compute_ssim, compute_lpips
 
 # === Constants ===
-DRIVE_URL = "https://drive.google.com/uc?id=11vI2DHWnLvgU0xSNWxZdz42b2HwDE2B9"
-WEIGHTS_PATH = "vae_weights.h5"
-
+MODEL_PATH = "models/total_vae_model.keras"  # update path if different
 
 # === Helper Functions ===
-def download_weights():
-    if not os.path.exists(WEIGHTS_PATH):
-        gdown.download(DRIVE_URL, WEIGHTS_PATH, quiet=False)
-    return WEIGHTS_PATH
-
-
 @st.cache_resource
 def get_model():
-    weights_path = download_weights()
-    return load_vae_model(weights_path)
-
+    return tf.keras.models.load_model(MODEL_PATH, custom_objects={"VAEModel": VAEModel})
 
 def preprocess_image(image_np):
     """Resize, normalize, and batch the image for model input."""
@@ -37,7 +23,6 @@ def preprocess_image(image_np):
     image = image / 255.0
     image = tf.expand_dims(image, axis=0)  # Shape: (1, 64, 64, 3)
     return image
-
 
 # === Streamlit UI ===
 st.set_page_config(page_title="VAE Image Restoration", layout="centered")
